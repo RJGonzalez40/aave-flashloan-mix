@@ -1,12 +1,17 @@
-pragma solidity ^0.6.6;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.10;
 
 import "./aave/FlashLoanReceiverBaseV2.sol";
 import "../../interfaces/v2/ILendingPoolAddressesProviderV2.sol";
 import "../../interfaces/v2/ILendingPoolV2.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract FlashloanV2 is FlashLoanReceiverBaseV2, Withdrawable {
+contract FlashloanV2 is FlashLoanReceiverBaseV2, Ownable {
 
-    constructor(address _addressProvider) FlashLoanReceiverBaseV2(_addressProvider) public {}
+    ILendingPoolV2 private constant LENDING_POOL = ILendingPoolV2(address(0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9));
+
+    constructor(address _addressProvider) FlashLoanReceiverBaseV2(_addressProvider) {}
 
     /**
      * @dev This function must be called only be the LENDING_POOL and takes care of repaying
@@ -29,8 +34,6 @@ contract FlashloanV2 is FlashLoanReceiverBaseV2, Withdrawable {
         override
         returns (bool)
     {
-        
-        //
         // This contract now has the funds requested.
         // Your logic goes here.
         //
