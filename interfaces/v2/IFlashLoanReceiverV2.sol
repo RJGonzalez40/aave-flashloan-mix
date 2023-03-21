@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: agpl-3.0
-pragma solidity ^0.6.6;
+pragma solidity 0.8.10;
 
 import { ILendingPoolAddressesProviderV2 } from './ILendingPoolAddressesProviderV2.sol';
 import { ILendingPoolV2 } from './ILendingPoolV2.sol';
@@ -7,7 +7,6 @@ import { ILendingPoolV2 } from './ILendingPoolV2.sol';
 /**
  * @title IFlashLoanReceiverV2 interface
  * @notice Interface for the Aave fee IFlashLoanReceiver.
- * @author Aave
  * @dev implement this interface to develop a flashloan-compatible flashLoanReceiver contract
  **/
 interface IFlashLoanReceiverV2 {
